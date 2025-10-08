@@ -1,2 +1,2 @@
 # pandoc-beamer
-example latex0-beamer presentation with pandoc
+example LaTeX-beamer presentation with pandoc
