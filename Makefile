@@ -1,23 +1,32 @@
 
 SHELL=/bin/sh
 
-SOURCE=pres.md
-PRES_FILES=$(wildcard pres.*)
-
-GENERATED=$(patsubst $(SOURCE),  , $(PRES_FILES))
-
-
+DEFAULT_GOAL := all
 
 .SUFFIXES: .md .pdf
 
-PRES=pres.pdf
+BASE=pres
+SOURCE=$(BASE).md
+TARGET=$(BASE).pdf
+FILES_WC=$(wildcard $(BASE).*)
+FILES_LS=$(shell ls $(BASE).*)
+FILES=$(FILES_LS)
+
+GENERATED_S=$(patsubst $(SOURCE), ,$(FILES))
+GENERATED_FO=$(filter-out $(SOURCE),$(FILES))
+GENERATED=$(GENERATED_FO)
+
+
+
+
+PRES=$(TARGET)
 
 
 
 
 
-.md.tex:
-	pandoc -t beamer  $< -o  $@
+.md.pdf:
+	@pandoc -t beamer  $< -o $@
 
 
 
@@ -25,18 +34,28 @@ PRES=pres.pdf
 .PHONY: info
 
 info:
-		@echo generated files: $(GENERATED)
+	@echo source: $(SOURCE)
+	@echo target: $(TARGET)
+	@echo pres: $(PRES)
+	@echo files wildcard: $(FILES_WC)
+	@echo files ls: $(FILES_LS)
+	@echo files: $(FILES)
+	@echo generated subst: $(GENERATED_S)
+	@echo generated filter: $(GENERATED_FO)
+	@echo generated files: $(GENERATED)
 
-.PHONY: pres
-pres: pdf
+.PHONY: $(BASE)
+$(BASE): pdf
 .PHONY: pdf
-pdf: clean $(PRES)
+pdf: clean $(TARGET)
+
+$(TARGET): $(SOURCE) Makefile
 
 
 
 .PHONY: clean
 show: pres
-	@$(VIEWER) pres.pdf
+	@$(VIEWER) $(PRES)
 
 
 clean:
@@ -44,10 +63,10 @@ clean:
 
 .PHONY: all
 
-all: pres
+all:$(TARGET)
 
 .PHONY: check
-check: checkmake 
+check: checkmake
 
 .PHONY: checkmake
 checkmake:

@@ -2,7 +2,7 @@
 title:
 - LaTeX beamer slides with pandoc 
 author:
-- Michael Adam <obnox@samba.org
+- Michael Adam <obnox@samba.org>
 theme:
 - Copenhagen
 date:
@@ -13,19 +13,19 @@ date:
 # creating slides
 
 
-various standard options:
+various "standard" options:
 
 - powerpoint
 - google slides
 - etc
 
-- pdf files in slideshow mode
+PDF  files with the viewer  slideshow mode
 
 
-advantages of pdfs:
+advantages of PDFs:
 
 - share read-only
-- can be produced from human-readable input
+- can be produced from human-readable input (avoid wusiwyg) 
 
 
 # how to produce PDF  slide decks
@@ -36,14 +36,14 @@ advantages of pdfs:
 
 # What is LaTeX?
 
-LaTeX is a typesetting system for creating professional *often scientific) socuments.
+LaTeX is a document typesetting system for creating professional (often scientifcic) documents.
 
-It is renered (e. g. to PDF)  from a plain-text markup input file.
+It is renered (e. g. to PDF) from a plain-text markup input file.
 
 Writing LaTeX documents is a bit like programming.
 
 
-The plain text nature of the input allows to add it to version contril (like `git`).
+The plain text nature of the input allows to add it to version control (like `git`).
 
 # how does LaTeX help with creating slideshow PDFs?
 
