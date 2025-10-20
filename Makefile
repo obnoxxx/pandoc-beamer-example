@@ -3,9 +3,10 @@ SHELL=/bin/sh
 
 DEFAULT_GOAL := all
 
-.SUFFIXES: .md .pdf
+.SUFFIXES: .md .tex .pdf
 
 BASE=pres
+LATEX=$(BASE).tex
 SOURCE=$(BASE).md
 TARGET=$(BASE).pdf
 FILES_WC=$(wildcard $(BASE).*)
@@ -28,6 +29,10 @@ PRES=$(TARGET)
 .md.pdf:
 	@pandoc -t beamer  $< -o $@
 
+.md.tex:
+	@pandoc -t latex  $< -o $@
+
+
 
 
 
@@ -36,6 +41,7 @@ PRES=$(TARGET)
 info:
 	@echo source: $(SOURCE)
 	@echo target: $(TARGET)
+	@echo latex target $(LATEX)
 	@echo pres: $(PRES)
 	@echo files wildcard: $(FILES_WC)
 	@echo files ls: $(FILES_LS)
@@ -49,6 +55,10 @@ $(BASE): pdf
 .PHONY: pdf
 pdf: clean $(TARGET)
 
+.PHONY: tex
+tex: $(LATEX)
+
+LATEX): $(SOURCE) Makefile
 $(TARGET): $(SOURCE) Makefile
 
 
