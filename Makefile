@@ -1,7 +1,7 @@
 
 SHELL=/bin/sh
 
-DEFAULT_GOAL := all
+.DEFAULT_GOAL := all
 
 .SUFFIXES: .md .tex .pdf
 
